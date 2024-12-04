@@ -1,0 +1,33 @@
+:host {
+  @apply flex items-center gap-4 ps-3 h-11 relative w-[600px];
+
+  input {
+    @apply text-md placeholder-neutral-500 outline-none bg-surface-container ps-12 rounded-full absolute inset-0 z-[0];
+  }
+
+  .search-icon {
+    @apply relative z-[1] text-on-surface-variant;
+  }
+
+  &.has-dropdown {
+    z-index: 1001;
+
+    input {
+      border-top-left-radius: theme('borderRadius.3xl');
+      border-top-right-radius: theme('borderRadius.3xl');
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      @apply bg-surface-container-lowest;
+    }
+  }
+}
+
+:host-context(html.dark) {
+  .search-icon {
+    @apply text-neutral-400;
+  }
+
+  input {
+    @apply bg-surface-container-high placeholder-neutral-400;
+  }
+}

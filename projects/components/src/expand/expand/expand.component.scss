@@ -1,0 +1,62 @@
+:host {
+  --emr-expand-fade-color: theme('colors.background');
+  --emr-expand-button-bg: theme('colors.surface-container');
+  --emr-expand-button-color: theme('colors.on-surface');
+  --emr-expand-button-font-size: theme('fontSize.tiny');
+  --emr-expand-button-box-shadow: theme('boxShadow.md');
+  --emr-expand-button-border-radius: theme('borderRadius.full');
+  --emr-expand-button-padding: theme('padding[2]') theme('padding.4');
+  --emr-expand-button-hover-opacity: theme('opacity.90');
+  --emr-expand-expanded-height: 300px;
+
+  @apply block relative max-h-[var(--emr-expand-expanded-height)] overflow-hidden;
+
+  .button {
+    @apply absolute start-[50%] bottom-12;
+    @apply bg-[var(--emr-expand-button-bg)] rounded-[var(--emr-expand-button-border-radius)] p-[var(--emr-expand-button-padding)];
+    @apply flex items-center justify-center z-[2];
+    transform: translate(-50%, 50%);
+    color: var(--emr-expand-button-color);
+    font-size: var(--emr-expand-button-font-size);
+    box-shadow: var(--emr-expand-button-box-shadow);
+  }
+
+  .button {
+    &:hover {
+      opacity: var(--emr-expand-button-hover-opacity);
+    }
+
+    &:active {
+      scale: .98;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(transparent, var(--emr-expand-fade-color));
+    z-index: 1;
+  }
+
+  &.is-expanded {
+    @apply max-h-max overflow-auto;
+
+    &:after {
+      @apply hidden;
+    }
+
+    .button {
+      @apply invisible;
+    }
+
+    &:hover {
+      .button {
+        @apply visible;
+      }
+    }
+  }
+}

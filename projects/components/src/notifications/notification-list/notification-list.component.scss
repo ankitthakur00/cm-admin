@@ -1,0 +1,29 @@
+:host {
+  --emr-notification-is-new-bg: theme('colors.primary.200');
+  --emr-notification-padding: theme('padding.5');
+  --emr-notification-gap: theme('gap.4');
+
+  @apply flex flex-col;
+
+  .notification {
+    @apply relative bg-surface-container-low rounded-xl;
+
+    &:has(.is-new) {
+      @apply bg-[var(--emr-notification-is-new-bg)];
+    }
+  }
+
+  .controls {
+    @apply absolute end-2 top-2;
+  }
+
+  &:has(.controls:not(:empty)) {
+    .notification {
+      @apply pe-7;
+    }
+  }
+}
+
+:host-context(html.dark) {
+  --emr-notification-is-new-bg: theme('colors.neutral.800');
+}
